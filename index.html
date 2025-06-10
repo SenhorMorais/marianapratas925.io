@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <meta name="theme-color" content="#9333ea">
+    <meta name="theme-color" content="#b19cd9">
     <style>
         * {
             margin: 0;
@@ -17,26 +17,26 @@
         }
 
         :root {
-            --primary: #ec4899;
-            --primary-dark: #db2777;
-            --secondary: #f472b6;
-            --accent: #fbbf24;
+            --primary: #b19cd9;
+            --primary-dark: #9e87cc;
+            --secondary: #c9b3e6;
+            --accent: #d4c4e8;
             --success: #10b981;
             --danger: #ef4444;
             --warning: #f59e0b;
             --info: #3b82f6;
             --dark: #1f2937;
-            --light: #fef7ff;
+            --light: #faf9ff;
             --gray: #4b5563;
-            --gray-light: #f3e8ff;
+            --gray-light: #f3f0ff;
             --white: #ffffff;
             --border-radius: 16px;
-            --shadow: 0 10px 25px -5px rgba(236, 72, 153, 0.1), 0 8px 10px -6px rgba(236, 72, 153, 0.1);
-            --shadow-lg: 0 25px 50px -12px rgba(236, 72, 153, 0.25);
-            --gradient-primary: linear-gradient(135deg, #fce7f3 0%, #fdf2f8 50%, #fef7ff 100%);
-            --gradient-secondary: linear-gradient(135deg, #ec4899 0%, #f472b6 50%, #fbbf24 100%);
-            --gradient-hero: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 30%, #fef7ff 60%, #fffbeb 100%);
-            --gradient-accent: linear-gradient(135deg, #ec4899, #f472b6, #fbbf24);
+            --shadow: 0 10px 25px -5px rgba(177, 156, 217, 0.1), 0 8px 10px -6px rgba(177, 156, 217, 0.1);
+            --shadow-lg: 0 25px 50px -12px rgba(177, 156, 217, 0.25);
+            --gradient-primary: linear-gradient(135deg, #f3f0ff 0%, #f8f6ff 50%, #faf9ff 100%);
+            --gradient-secondary: linear-gradient(135deg, #b19cd9 0%, #c9b3e6 50%, #d4c4e8 100%);
+            --gradient-hero: linear-gradient(135deg, #f3f0ff 0%, #f8f6ff 30%, #faf9ff 60%, #ffffff 100%);
+            --gradient-accent: linear-gradient(135deg, #b19cd9, #c9b3e6, #d4c4e8);
         }
 
         html {
@@ -61,9 +61,9 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(244, 114, 182, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(251, 191, 36, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(177, 156, 217, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(201, 179, 230, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(212, 196, 232, 0.05) 0%, transparent 50%);
             pointer-events: none;
             z-index: -1;
             animation: backgroundFloat 20s ease-in-out infinite;
@@ -137,7 +137,7 @@
         }
 
         .gradient-text {
-            background: linear-gradient(135deg, #db2777, #ec4899, #f59e0b);
+            background: linear-gradient(135deg, #9e87cc, #b19cd9, #c9b3e6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -198,12 +198,12 @@
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+            box-shadow: 0 4px 15px rgba(177, 156, 217, 0.3);
         }
 
         .btn-primary:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+            box-shadow: 0 8px 25px rgba(177, 156, 217, 0.4);
         }
 
         .btn-admin {
@@ -334,7 +334,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23ec4899" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ec4899" stop-opacity="0"/></radialGradient><radialGradient id="b" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23f472b6" stop-opacity="0.08"/><stop offset="100%" stop-color="%23f472b6" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="120" fill="url(%23a)"><animate attributeName="cx" values="200;800;200" dur="25s" repeatCount="indefinite"/><animate attributeName="cy" values="200;400;200" dur="30s" repeatCount="indefinite"/></circle><circle cx="800" cy="300" r="150" fill="url(%23b)"><animate attributeName="cx" values="800;200;800" dur="28s" repeatCount="indefinite"/></circle><circle cx="400" cy="600" r="100" fill="url(%23a)"><animate attributeName="cy" values="600;100;600" dur="22s" repeatCount="indefinite"/></circle></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23b19cd9" stop-opacity="0.1"/><stop offset="100%" stop-color="%23b19cd9" stop-opacity="0"/></radialGradient><radialGradient id="b" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23c9b3e6" stop-opacity="0.08"/><stop offset="100%" stop-color="%23c9b3e6" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="120" fill="url(%23a)"><animate attributeName="cx" values="200;800;200" dur="25s" repeatCount="indefinite"/><animate attributeName="cy" values="200;400;200" dur="30s" repeatCount="indefinite"/></circle><circle cx="800" cy="300" r="150" fill="url(%23b)"><animate attributeName="cx" values="800;200;800" dur="28s" repeatCount="indefinite"/></circle><circle cx="400" cy="600" r="100" fill="url(%23a)"><animate attributeName="cy" values="600;100;600" dur="22s" repeatCount="indefinite"/></circle></svg>');
             animation: drift 40s ease-in-out infinite;
         }
 
@@ -426,15 +426,15 @@
             backdrop-filter: blur(20px);
             padding: 40px 32px;
             border-radius: 24px;
-            border: 1px solid rgba(236, 72, 153, 0.2);
+            border: 1px solid rgba(177, 156, 217, 0.2);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             text-align: center;
-            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.1);
+            box-shadow: 0 10px 30px rgba(177, 156, 217, 0.1);
         }
 
         .feature-card:hover {
             transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(236, 72, 153, 0.2);
+            box-shadow: 0 25px 50px rgba(177, 156, 217, 0.2);
             background: rgba(255, 255, 255, 0.95);
         }
 
@@ -461,7 +461,7 @@
         /* Products Section */
         .products {
             padding: 120px 0;
-            background: linear-gradient(180deg, #fefcff 0%, #fef7ff 50%, #ffffff 100%);
+            background: linear-gradient(180deg, #fefcff 0%, #f8f6ff 50%, #ffffff 100%);
             position: relative;
         }
 
@@ -473,8 +473,8 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(circle at 10% 90%, rgba(236, 72, 153, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 90% 10%, rgba(251, 191, 36, 0.03) 0%, transparent 50%);
+                radial-gradient(circle at 10% 90%, rgba(177, 156, 217, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 90% 10%, rgba(212, 196, 232, 0.03) 0%, transparent 50%);
             pointer-events: none;
         }
 
@@ -510,7 +510,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, transparent, rgba(147, 51, 234, 0.05));
+            background: linear-gradient(135deg, transparent, rgba(177, 156, 217, 0.05));
             opacity: 0;
             transition: opacity 0.3s ease;
             pointer-events: none;
@@ -592,7 +592,7 @@
 
         /* Footer */
         .footer {
-            background: linear-gradient(135deg, #1f1632, #2d1b4e, #3c1d5c);
+            background: linear-gradient(135deg, #3d2a5e, #4a3268, #5a3a75);
             color: white;
             padding: 80px 0 40px;
             text-align: center;
@@ -606,7 +606,7 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 0.5), transparent);
+            background: linear-gradient(90deg, transparent, rgba(177, 156, 217, 0.5), transparent);
         }
 
         .footer-logo {
@@ -709,7 +709,7 @@
         .form-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(147, 51, 234, 0.1);
+            box-shadow: 0 0 0 4px rgba(177, 156, 217, 0.1);
             transform: translateY(-1px);
         }
 
@@ -736,7 +736,7 @@
 
         .toggle-password:hover {
             color: var(--primary);
-            background: rgba(236, 72, 153, 0.1);
+            background: rgba(177, 156, 217, 0.1);
         }
 
         .error-message {
@@ -858,7 +858,7 @@
         }
 
         .product-item:hover {
-            background: rgba(147, 51, 234, 0.02);
+            background: rgba(177, 156, 217, 0.02);
         }
 
         .product-item:last-child {
@@ -921,7 +921,8 @@
         .empty-state i {
             font-size: 64px;
             margin-bottom: 24px;
-            color: #d1d5db;
+            color: var(--primary);
+            opacity: 0.5;
         }
 
         .empty-state h3 {
@@ -941,7 +942,7 @@
             max-width: 200px;
             max-height: 200px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.2);
+            box-shadow: 0 4px 15px rgba(177, 156, 217, 0.2);
             border: 2px solid var(--gray-light);
             object-fit: cover;
         }
@@ -1972,53 +1973,7 @@
         window.storageUploadBytes = uploadBytes;
         window.storageGetDownloadURL = getDownloadURL;
 
-        // Default products to initialize if database is empty
-        const defaultProducts = [
-            {
-                name: 'Anel Delicado Prata 925',
-                price: 'R$ 89,90',
-                image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&h=400&fit=crop&auto=format&q=80',
-                description: 'Anel em prata 925 com design minimalista e acabamento premium'
-            },
-            {
-                name: 'Colar Coração Prata 925',
-                price: 'R$ 125,90',
-                image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=400&fit=crop&auto=format&q=80',
-                description: 'Colar elegante com pingente em formato de coração artesanal'
-            },
-            {
-                name: 'Brincos Argola Prata 925',
-                price: 'R$ 65,90',
-                image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=400&fit=crop&auto=format&q=80',
-                description: 'Brincos de argola clássicos com brilho duradouro'
-            },
-            {
-                name: 'Pulseira Elegante Prata 925',
-                price: 'R$ 95,90',
-                image: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=400&h=400&fit=crop&auto=format&q=80',
-                description: 'Pulseira delicada com elos refinados e fecho seguro'
-            }
-        ];
-
-        // Initialize products in Firestore if empty
-        async function initializeFirestoreProducts() {
-            try {
-                const productsCol = collection(db, 'products');
-                const snapshot = await getDocs(productsCol);
-                
-                if (snapshot.empty) {
-                    console.log('Database is empty, initializing with default products...');
-                    for (const product of defaultProducts) {
-                        await addDoc(productsCol, product);
-                    }
-                    console.log('Default products added to Firestore');
-                }
-            } catch (error) {
-                console.error('Error initializing products:', error);
-            }
-        }
-
-        // Load products from Firestore
+        // Load products from Firestore WITHOUT default products
         function loadProducts() {
             const productsCol = collection(db, 'products');
             
@@ -2048,23 +2003,14 @@
             });
         }
 
-        // Initialize the app
-        document.addEventListener('DOMContentLoaded', async function() {
-            try {
-                await initializeFirestoreProducts();
-                loadProducts();
-            } catch (error) {
-                console.error('Error during initialization:', error);
-                // Continue with empty products
-                window.products = [];
-                renderProducts();
-            }
+        // Initialize the app without default products
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProducts();
             showPage('home');
         });
 
         // Make functions globally available
         window.loadProducts = loadProducts;
-        window.initializeFirestoreProducts = initializeFirestoreProducts;
     </script>
 
     <script>
@@ -2398,44 +2344,6 @@
             
             return '';
         }
-        function previewImage(input, previewId) {
-            const previewContainer = document.getElementById(previewId);
-            if (!previewContainer) return;
-            
-            const url = input.value.trim();
-            
-            if (!url) {
-                previewContainer.innerHTML = `
-                    <div class="preview-placeholder">
-                        <i class="fas fa-camera"></i>
-                        <span style="margin-left: 8px;">Pré-visualização da imagem</span>
-                    </div>
-                `;
-                return;
-            }
-            
-            // Validate URL
-            if (!isValidUrl(url)) {
-                previewContainer.innerHTML = `
-                    <div class="preview-placeholder" style="border-color: var(--danger); color: var(--danger);">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <span style="margin-left: 8px;">URL inválida</span>
-                    </div>
-                `;
-                return;
-            }
-            
-            const imgHTML = `
-                <img 
-                    src="${escapeHtml(url)}" 
-                    alt="Preview" 
-                    class="preview-img" 
-                    onload="this.style.display='block'" 
-                    onerror="this.parentElement.innerHTML='<div class=&quot;preview-placeholder&quot; style=&quot;border-color: var(--danger); color: var(--danger);&quot;><i class=&quot;fas fa-exclamation-triangle&quot;></i><span style=&quot;margin-left: 8px;&quot;>Erro ao carregar imagem</span></div>'"
-                >
-            `;
-            previewContainer.innerHTML = imgHTML;
-        }
 
         // Generate WhatsApp message
         function generateWhatsAppMessage(product) {
@@ -2545,8 +2453,8 @@ Aguardo seu retorno! 😊`;
                 container.innerHTML = `
                     <div class="empty-state">
                         <i class="fas fa-gem"></i>
-                        <h3>Nenhum produto cadastrado</h3>
-                        <p>Adicione produtos através do painel administrativo para começar</p>
+                        <h3>Coleção em Breve</h3>
+                        <p>Nossa coleção exclusiva de joias em prata 925 está sendo preparada especialmente para você. Em breve, teremos peças únicas e artesanais disponíveis!</p>
                     </div>
                 `;
                 return;
@@ -2712,477 +2620,3 @@ Aguardo seu retorno! 😊`;
                             </div>
                         </div>
                     `;
-                } else {
-                    // View mode
-                    productItem.innerHTML = `
-                        <img 
-                            src="${escapeHtml(product.image)}" 
-                            alt="${escapeHtml(product.name)}" 
-                            class="product-thumbnail" 
-                            loading="lazy"
-                            onerror="this.src='https://via.placeholder.com/80x80/f0f0f0/999999?text=Erro'"
-                        >
-                        <div class="product-details">
-                            <h3>${escapeHtml(product.name)}</h3>
-                            <p>${escapeHtml(product.description)}</p>
-                            <p class="product-price-admin">${escapeHtml(product.price)}</p>
-                        </div>
-                        <div class="product-actions">
-                            <button onclick="editProduct('${product.id}')" class="btn btn-primary">
-                                <i class="fas fa-edit"></i>
-                                <span>Editar</span>
-                            </button>
-                            <button onclick="deleteProduct('${product.id}')" class="btn btn-danger">
-                                <i class="fas fa-trash"></i>
-                                <span>Excluir</span>
-                            </button>
-                        </div>
-                    `;
-                }
-                
-                container.appendChild(productItem);
-            });
-        }
-
-        function addProduct() {
-            const nameInput = document.getElementById('newProductName');
-            const priceInput = document.getElementById('newProductPrice');
-            const descriptionInput = document.getElementById('newProductDescription');
-            const addBtn = document.getElementById('addProductBtn');
-            
-            if (!nameInput || !priceInput || !descriptionInput || !addBtn) {
-                showMessage('Erro: Elementos do formulário não encontrados.', 'error');
-                return;
-            }
-            
-            const name = nameInput.value.trim();
-            const priceValue = priceInput.value.trim();
-            const description = descriptionInput.value.trim();
-            const image = getImageUrl('new');
-            
-            if (!name || !priceValue || !image || !description) {
-                showMessage('Por favor, preencha todos os campos obrigatórios.', 'error');
-                return;
-            }
-            
-            // Validate URL format if using URL input
-            const urlInputContainer = document.getElementById('newUrlInput');
-            if (urlInputContainer && !urlInputContainer.classList.contains('hidden')) {
-                if (!isValidUrl(image)) {
-                    showMessage('Por favor, insira uma URL válida para a imagem.', 'error');
-                    return;
-                }
-            }
-            
-            addBtn.disabled = true;
-            addBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Adicionando...</span>';
-            
-            const newProduct = {
-                name: name,
-                price: getFormattedPrice(priceValue),
-                image: image,
-                description: description
-            };
-            
-            // Use Firestore
-            const productsCol = window.firestoreCollection(window.db, 'products');
-            
-            window.firestoreAddDoc(productsCol, newProduct)
-                .then(() => {
-                    showMessage('✅ Produto adicionado com sucesso!');
-                    
-                    // Clear form
-                    nameInput.value = '';
-                    priceInput.value = '';
-                    descriptionInput.value = '';
-                    
-                    // Update character counter
-                    updateCharacterCounter();
-                    
-                    // Clear image inputs
-                    const urlInput = document.getElementById('newProductImage');
-                    const fileInput = document.getElementById('newProductImageFile');
-                    const fileTextElement = document.getElementById('newFileInputText');
-                    const uploadProgress = document.getElementById('newUploadProgress');
-                    const uploadStatus = document.getElementById('newUploadStatus');
-                    
-                    if (urlInput) urlInput.value = '';
-                    if (fileInput) {
-                        fileInput.value = '';
-                        fileInput.dataset.downloadUrl = '';
-                    }
-                    if (fileTextElement) fileTextElement.textContent = 'Clique para selecionar uma imagem';
-                    if (uploadProgress) uploadProgress.classList.add('hidden');
-                    if (uploadStatus) uploadStatus.textContent = '';
-                    
-                    // Reset to URL tab
-                    const urlTab = document.querySelector('.image-option-tabs .tab-button');
-                    if (urlTab) {
-                        urlTab.click();
-                    }
-                    
-                    // Reset image preview
-                    resetImagePreview('newImagePreview');
-                })
-                .catch((error) => {
-                    console.error('Error adding product:', error);
-                    showMessage('❌ Erro ao adicionar produto: ' + error.message, 'error');
-                })
-                .finally(() => {
-                    addBtn.disabled = false;
-                    addBtn.innerHTML = '<i class="fas fa-plus"></i> <span>Adicionar Produto</span>';
-                });
-        }
-
-        // Character counter function
-        function updateCharacterCounter() {
-            const descriptionInput = document.getElementById('newProductDescription');
-            const counter = document.getElementById('descriptionCounter');
-            
-            if (descriptionInput && counter) {
-                const length = descriptionInput.value.length;
-                counter.textContent = `${length}/200`;
-                
-                if (length > 180) {
-                    counter.style.color = '#ef4444';
-                } else if (length > 150) {
-                    counter.style.color = '#f59e0b';
-                } else {
-                    counter.style.color = '#6b7280';
-                }
-            }
-        }
-
-        // Character counter for edit form
-        function updateEditCharacterCounter(productId) {
-            const descriptionInput = document.getElementById(`edit-description-${productId}`);
-            const counter = document.getElementById(`editDescriptionCounter-${productId}`);
-            
-            if (descriptionInput && counter) {
-                const length = descriptionInput.value.length;
-                counter.textContent = `${length}/200`;
-                
-                if (length > 180) {
-                    counter.style.color = '#ef4444';
-                } else if (length > 150) {
-                    counter.style.color = '#f59e0b';
-                } else {
-                    counter.style.color = '#6b7280';
-                }
-            }
-        }
-
-        function editProduct(id) {
-            window.editingProductId = id;
-            renderAdminProducts();
-        }
-
-        function saveEdit(id) {
-            const nameInput = document.getElementById(`edit-name-${id}`);
-            const priceInput = document.getElementById(`edit-price-${id}`);
-            const descriptionInput = document.getElementById(`edit-description-${id}`);
-            const saveBtn = document.getElementById(`saveBtn-${id}`);
-            
-            if (!nameInput || !priceInput || !descriptionInput || !saveBtn) {
-                showMessage('Erro: Elementos do formulário não encontrados.', 'error');
-                return;
-            }
-            
-            const name = nameInput.value.trim();
-            const priceValue = priceInput.value.trim();
-            const description = descriptionInput.value.trim();
-            const image = getImageUrl('edit');
-            
-            if (!name || !priceValue || !image || !description) {
-                showMessage('Por favor, preencha todos os campos obrigatórios.', 'error');
-                return;
-            }
-            
-            // Validate URL format if using URL input
-            const urlInputContainer = document.getElementById('editUrlInput');
-            if (urlInputContainer && !urlInputContainer.classList.contains('hidden')) {
-                if (!isValidUrl(image)) {
-                    showMessage('Por favor, insira uma URL válida para a imagem.', 'error');
-                    return;
-                }
-            }
-            
-            saveBtn.disabled = true;
-            saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Salvando...</span>';
-            
-            const updatedProduct = {
-                name: name,
-                price: getFormattedPrice(priceValue),
-                image: image,
-                description: description
-            };
-            
-            // Use Firestore
-            const productRef = window.firestoreDoc(window.db, 'products', id);
-            
-            window.firestoreUpdateDoc(productRef, updatedProduct)
-                .then(() => {
-                    showMessage('✅ Produto atualizado com sucesso!');
-                    window.editingProductId = null;
-                })
-                .catch((error) => {
-                    console.error('Error updating product:', error);
-                    showMessage('❌ Erro ao atualizar produto: ' + error.message, 'error');
-                    saveBtn.disabled = false;
-                    saveBtn.innerHTML = '<i class="fas fa-save"></i> <span>Salvar</span>';
-                });
-        }
-
-        function cancelEdit() {
-            window.editingProductId = null;
-            renderAdminProducts();
-        }
-
-        function deleteProduct(id) {
-            const confirmText = '⚠️ Tem certeza que deseja excluir este produto?\n\nEsta ação não pode ser desfeita e o produto será removido permanentemente.';
-            
-            if (!confirm(confirmText)) {
-                return;
-            }
-            
-            // Use Firestore
-            const productRef = window.firestoreDoc(window.db, 'products', id);
-            
-            window.firestoreDeleteDoc(productRef)
-                .then(() => {
-                    showMessage('✅ Produto excluído com sucesso!');
-                })
-                .catch((error) => {
-                    console.error('Error deleting product:', error);
-                    showMessage('❌ Erro ao excluir produto: ' + error.message, 'error');
-                });
-        }
-
-        // Check if running on HTTPS
-        function isSecureContext() {
-            return window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        }
-
-        // Update CORS warning based on protocol
-        function updateCORSWarning() {
-            const corsWarning = document.querySelector('.cors-warning');
-            if (!corsWarning) return;
-            
-            if (isSecureContext()) {
-                corsWarning.style.display = 'none';
-            } else {
-                corsWarning.style.display = 'block';
-            }
-        }
-
-        // Password management functions
-        function getCurrentPassword() {
-            // Get stored password or return default
-            return localStorage.getItem('adminPassword') || 'mariana2025';
-        }
-
-        function setNewPassword(password) {
-            localStorage.setItem('adminPassword', password);
-            updatePasswordStatus();
-        }
-
-        function updatePasswordStatus() {
-            const statusBadge = document.getElementById('passwordStatusBadge');
-            if (!statusBadge) return;
-            
-            const hasCustomPassword = localStorage.getItem('adminPassword');
-            if (hasCustomPassword) {
-                statusBadge.innerHTML = '🔒 Senha Personalizada';
-                statusBadge.style.background = 'linear-gradient(135deg, #d1fae5, #a7f3d0)';
-                statusBadge.style.color = '#065f46';
-            } else {
-                statusBadge.innerHTML = '🔐 Senha Padrão';
-                statusBadge.style.background = 'linear-gradient(135deg, #fef3c7, #fde68a)';
-                statusBadge.style.color = '#92400e';
-            }
-        }
-
-        function togglePasswordField(fieldId, iconId) {
-            const passwordInput = document.getElementById(fieldId);
-            const passwordIcon = document.getElementById(iconId);
-            
-            if (!passwordInput || !passwordIcon) return;
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                passwordIcon.className = 'fas fa-eye-slash';
-            } else {
-                passwordInput.type = 'password';
-                passwordIcon.className = 'fas fa-eye';
-            }
-        }
-
-        function checkPasswordStrength(password) {
-            const strengthElement = document.getElementById('passwordStrength');
-            if (!strengthElement) return;
-            
-            if (password.length === 0) {
-                strengthElement.textContent = '';
-                strengthElement.className = 'password-strength';
-                return;
-            }
-            
-            let strength = 0;
-            const checks = [
-                password.length >= 6,
-                /[a-z]/.test(password),
-                /[A-Z]/.test(password),
-                /\d/.test(password),
-                /[!@#$%^&*(),.?":{}|<>]/.test(password),
-                password.length >= 10
-            ];
-            
-            strength = checks.filter(Boolean).length;
-            
-            if (strength <= 2) {
-                strengthElement.textContent = '⚠️ Senha fraca';
-                strengthElement.className = 'password-strength weak';
-            } else if (strength <= 4) {
-                strengthElement.textContent = '🔶 Senha média';
-                strengthElement.className = 'password-strength medium';
-            } else {
-                strengthElement.textContent = '✅ Senha forte';
-                strengthElement.className = 'password-strength strong';
-            }
-        }
-
-        function checkPasswordMatch() {
-            const newPassword = document.getElementById('newPassword');
-            const confirmPassword = document.getElementById('confirmPassword');
-            const matchElement = document.getElementById('passwordMatch');
-            
-            if (!newPassword || !confirmPassword || !matchElement) return;
-            
-            if (confirmPassword.value.length === 0) {
-                matchElement.textContent = '';
-                matchElement.className = 'password-strength';
-                return;
-            }
-            
-            if (newPassword.value === confirmPassword.value) {
-                matchElement.textContent = '✅ Senhas coincidem';
-                matchElement.className = 'password-strength strong';
-            } else {
-                matchElement.textContent = '❌ Senhas não coincidem';
-                matchElement.className = 'password-strength weak';
-            }
-        }
-
-        function handlePasswordChange(event) {
-            event.preventDefault();
-            
-            const currentPasswordInput = document.getElementById('currentPassword');
-            const newPasswordInput = document.getElementById('newPassword');
-            const confirmPasswordInput = document.getElementById('confirmPassword');
-            const changePasswordBtn = document.getElementById('changePasswordBtn');
-            const successMessage = document.getElementById('passwordChangeSuccess');
-            
-            if (!currentPasswordInput || !newPasswordInput || !confirmPasswordInput || !changePasswordBtn) {
-                showMessage('Erro: Elementos do formulário não encontrados.', 'error');
-                return;
-            }
-            
-            const currentPassword = currentPasswordInput.value;
-            const newPassword = newPasswordInput.value;
-            const confirmPassword = confirmPasswordInput.value;
-            
-            // Validate current password
-            if (currentPassword !== getCurrentPassword()) {
-                showMessage('❌ Senha atual incorreta.', 'error');
-                currentPasswordInput.focus();
-                return;
-            }
-            
-            // Validate new password
-            if (newPassword.length < 6) {
-                showMessage('❌ A nova senha deve ter pelo menos 6 caracteres.', 'error');
-                newPasswordInput.focus();
-                return;
-            }
-            
-            // Check if passwords match
-            if (newPassword !== confirmPassword) {
-                showMessage('❌ As senhas não coincidem.', 'error');
-                confirmPasswordInput.focus();
-                return;
-            }
-            
-            // Check if new password is too weak
-            const weakPasswords = ['123456', 'password', 'admin', 'mariana', 'pratas', '111111', 'abc123'];
-            if (weakPasswords.includes(newPassword.toLowerCase())) {
-                showMessage('❌ Esta senha é muito comum. Escolha uma senha mais segura.', 'error');
-                newPasswordInput.focus();
-                return;
-            }
-            if (newPassword === currentPassword) {
-                showMessage('❌ A nova senha deve ser diferente da senha atual.', 'error');
-                newPasswordInput.focus();
-                return;
-            }
-            
-            // Disable button and show loading
-            changePasswordBtn.disabled = true;
-            changePasswordBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Alterando...</span>';
-            
-            // Simulate processing time
-            setTimeout(() => {
-                try {
-                    // Save new password
-                    setNewPassword(newPassword);
-                    
-                    // Clear form
-                    currentPasswordInput.value = '';
-                    newPasswordInput.value = '';
-                    confirmPasswordInput.value = '';
-                    
-                    // Clear strength indicators
-                    const strengthElement = document.getElementById('passwordStrength');
-                    const matchElement = document.getElementById('passwordMatch');
-                    if (strengthElement) {
-                        strengthElement.textContent = '';
-                        strengthElement.className = 'password-strength';
-                    }
-                    if (matchElement) {
-                        matchElement.textContent = '';
-                        matchElement.className = 'password-strength';
-                    }
-                    
-                    // Show success message
-                    if (successMessage) {
-                        successMessage.classList.remove('hidden');
-                        setTimeout(() => {
-                            successMessage.classList.add('hidden');
-                        }, 5000);
-                    }
-                    
-                    showMessage('✅ Senha alterada com sucesso! Use a nova senha no próximo login.', 'success');
-                    
-                } catch (error) {
-                    console.error('Error changing password:', error);
-                    showMessage('❌ Erro ao alterar senha. Tente novamente.', 'error');
-                } finally {
-                    // Re-enable button
-                    changePasswordBtn.disabled = false;
-                    changePasswordBtn.innerHTML = '<i class="fas fa-key"></i> <span>Alterar Senha</span>';
-                }
-            }, 1000);
-        }
-
-        // Enhanced loading for smooth transitions
-        window.addEventListener('load', function() {
-            document.body.style.opacity = '1';
-            document.body.style.transition = 'opacity 0.3s ease';
-        });
-
-        // Initialize empty products on start if Firebase fails
-        if (!window.products) {
-            window.products = [];
-        }
-    </script>
-</body>
-</html>
