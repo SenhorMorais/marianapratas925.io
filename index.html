@@ -2620,3 +2620,477 @@ Aguardo seu retorno! 😊`;
                             </div>
                         </div>
                     `;
+                } else {
+                    // View mode
+                    productItem.innerHTML = `
+                        <img 
+                            src="${escapeHtml(product.image)}" 
+                            alt="${escapeHtml(product.name)}" 
+                            class="product-thumbnail" 
+                            loading="lazy"
+                            onerror="this.src='https://via.placeholder.com/80x80/f0f0f0/999999?text=Erro'"
+                        >
+                        <div class="product-details">
+                            <h3>${escapeHtml(product.name)}</h3>
+                            <p>${escapeHtml(product.description)}</p>
+                            <p class="product-price-admin">${escapeHtml(product.price)}</p>
+                        </div>
+                        <div class="product-actions">
+                            <button onclick="editProduct('${product.id}')" class="btn btn-primary">
+                                <i class="fas fa-edit"></i>
+                                <span>Editar</span>
+                            </button>
+                            <button onclick="deleteProduct('${product.id}')" class="btn btn-danger">
+                                <i class="fas fa-trash"></i>
+                                <span>Excluir</span>
+                            </button>
+                        </div>
+                    `;
+                }
+                
+                container.appendChild(productItem);
+            });
+        }
+
+        function addProduct() {
+            const nameInput = document.getElementById('newProductName');
+            const priceInput = document.getElementById('newProductPrice');
+            const descriptionInput = document.getElementById('newProductDescription');
+            const addBtn = document.getElementById('addProductBtn');
+            
+            if (!nameInput || !priceInput || !descriptionInput || !addBtn) {
+                showMessage('Erro: Elementos do formulário não encontrados.', 'error');
+                return;
+            }
+            
+            const name = nameInput.value.trim();
+            const priceValue = priceInput.value.trim();
+            const description = descriptionInput.value.trim();
+            const image = getImageUrl('new');
+            
+            if (!name || !priceValue || !image || !description) {
+                showMessage('Por favor, preencha todos os campos obrigatórios.', 'error');
+                return;
+            }
+            
+            // Validate URL format if using URL input
+            const urlInputContainer = document.getElementById('newUrlInput');
+            if (urlInputContainer && !urlInputContainer.classList.contains('hidden')) {
+                if (!isValidUrl(image)) {
+                    showMessage('Por favor, insira uma URL válida para a imagem.', 'error');
+                    return;
+                }
+            }
+            
+            addBtn.disabled = true;
+            addBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Adicionando...</span>';
+            
+            const newProduct = {
+                name: name,
+                price: getFormattedPrice(priceValue),
+                image: image,
+                description: description
+            };
+            
+            // Use Firestore
+            const productsCol = window.firestoreCollection(window.db, 'products');
+            
+            window.firestoreAddDoc(productsCol, newProduct)
+                .then(() => {
+                    showMessage('✅ Produto adicionado com sucesso!');
+                    
+                    // Clear form
+                    nameInput.value = '';
+                    priceInput.value = '';
+                    descriptionInput.value = '';
+                    
+                    // Update character counter
+                    updateCharacterCounter();
+                    
+                    // Clear image inputs
+                    const urlInput = document.getElementById('newProductImage');
+                    const fileInput = document.getElementById('newProductImageFile');
+                    const fileTextElement = document.getElementById('newFileInputText');
+                    const uploadProgress = document.getElementById('newUploadProgress');
+                    const uploadStatus = document.getElementById('newUploadStatus');
+                    
+                    if (urlInput) urlInput.value = '';
+                    if (fileInput) {
+                        fileInput.value = '';
+                        fileInput.dataset.downloadUrl = '';
+                    }
+                    if (fileTextElement) fileTextElement.textContent = 'Clique para selecionar uma imagem';
+                    if (uploadProgress) uploadProgress.classList.add('hidden');
+                    if (uploadStatus) uploadStatus.textContent = '';
+                    
+                    // Reset to URL tab
+                    const urlTab = document.querySelector('.image-option-tabs .tab-button');
+                    if (urlTab) {
+                        urlTab.click();
+                    }
+                    
+                    // Reset image preview
+                    resetImagePreview('newImagePreview');
+                })
+                .catch((error) => {
+                    console.error('Error adding product:', error);
+                    showMessage('❌ Erro ao adicionar produto: ' + error.message, 'error');
+                })
+                .finally(() => {
+                    addBtn.disabled = false;
+                    addBtn.innerHTML = '<i class="fas fa-plus"></i> <span>Adicionar Produto</span>';
+                });
+        }
+
+        // Character counter function
+        function updateCharacterCounter() {
+            const descriptionInput = document.getElementById('newProductDescription');
+            const counter = document.getElementById('descriptionCounter');
+            
+            if (descriptionInput && counter) {
+                const length = descriptionInput.value.length;
+                counter.textContent = `${length}/200`;
+                
+                if (length > 180) {
+                    counter.style.color = '#ef4444';
+                } else if (length > 150) {
+                    counter.style.color = '#f59e0b';
+                } else {
+                    counter.style.color = '#6b7280';
+                }
+            }
+        }
+
+        // Character counter for edit form
+        function updateEditCharacterCounter(productId) {
+            const descriptionInput = document.getElementById(`edit-description-${productId}`);
+            const counter = document.getElementById(`editDescriptionCounter-${productId}`);
+            
+            if (descriptionInput && counter) {
+                const length = descriptionInput.value.length;
+                counter.textContent = `${length}/200`;
+                
+                if (length > 180) {
+                    counter.style.color = '#ef4444';
+                } else if (length > 150) {
+                    counter.style.color = '#f59e0b';
+                } else {
+                    counter.style.color = '#6b7280';
+                }
+            }
+        }
+
+        function editProduct(id) {
+            window.editingProductId = id;
+            renderAdminProducts();
+        }
+
+        function saveEdit(id) {
+            const nameInput = document.getElementById(`edit-name-${id}`);
+            const priceInput = document.getElementById(`edit-price-${id}`);
+            const descriptionInput = document.getElementById(`edit-description-${id}`);
+            const saveBtn = document.getElementById(`saveBtn-${id}`);
+            
+            if (!nameInput || !priceInput || !descriptionInput || !saveBtn) {
+                showMessage('Erro: Elementos do formulário não encontrados.', 'error');
+                return;
+            }
+            
+            const name = nameInput.value.trim();
+            const priceValue = priceInput.value.trim();
+            const description = descriptionInput.value.trim();
+            const image = getImageUrl('edit');
+            
+            if (!name || !priceValue || !image || !description) {
+                showMessage('Por favor, preencha todos os campos obrigatórios.', 'error');
+                return;
+            }
+            
+            // Validate URL format if using URL input
+            const urlInputContainer = document.getElementById('editUrlInput');
+            if (urlInputContainer && !urlInputContainer.classList.contains('hidden')) {
+                if (!isValidUrl(image)) {
+                    showMessage('Por favor, insira uma URL válida para a imagem.', 'error');
+                    return;
+                }
+            }
+            
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Salvando...</span>';
+            
+            const updatedProduct = {
+                name: name,
+                price: getFormattedPrice(priceValue),
+                image: image,
+                description: description
+            };
+            
+            // Use Firestore
+            const productRef = window.firestoreDoc(window.db, 'products', id);
+            
+            window.firestoreUpdateDoc(productRef, updatedProduct)
+                .then(() => {
+                    showMessage('✅ Produto atualizado com sucesso!');
+                    window.editingProductId = null;
+                })
+                .catch((error) => {
+                    console.error('Error updating product:', error);
+                    showMessage('❌ Erro ao atualizar produto: ' + error.message, 'error');
+                    saveBtn.disabled = false;
+                    saveBtn.innerHTML = '<i class="fas fa-save"></i> <span>Salvar</span>';
+                });
+        }
+
+        function cancelEdit() {
+            window.editingProductId = null;
+            renderAdminProducts();
+        }
+
+        function deleteProduct(id) {
+            const confirmText = '⚠️ Tem certeza que deseja excluir este produto?\n\nEsta ação não pode ser desfeita e o produto será removido permanentemente.';
+            
+            if (!confirm(confirmText)) {
+                return;
+            }
+            
+            // Use Firestore
+            const productRef = window.firestoreDoc(window.db, 'products', id);
+            
+            window.firestoreDeleteDoc(productRef)
+                .then(() => {
+                    showMessage('✅ Produto excluído com sucesso!');
+                })
+                .catch((error) => {
+                    console.error('Error deleting product:', error);
+                    showMessage('❌ Erro ao excluir produto: ' + error.message, 'error');
+                });
+        }
+
+        // Check if running on HTTPS
+        function isSecureContext() {
+            return window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        }
+
+        // Update CORS warning based on protocol
+        function updateCORSWarning() {
+            const corsWarning = document.querySelector('.cors-warning');
+            if (!corsWarning) return;
+            
+            if (isSecureContext()) {
+                corsWarning.style.display = 'none';
+            } else {
+                corsWarning.style.display = 'block';
+            }
+        }
+
+        // Password management functions
+        function getCurrentPassword() {
+            // Get stored password or return default
+            return localStorage.getItem('adminPassword') || 'mariana2025';
+        }
+
+        function setNewPassword(password) {
+            localStorage.setItem('adminPassword', password);
+            updatePasswordStatus();
+        }
+
+        function updatePasswordStatus() {
+            const statusBadge = document.getElementById('passwordStatusBadge');
+            if (!statusBadge) return;
+            
+            const hasCustomPassword = localStorage.getItem('adminPassword');
+            if (hasCustomPassword) {
+                statusBadge.innerHTML = '🔒 Senha Personalizada';
+                statusBadge.style.background = 'linear-gradient(135deg, #d1fae5, #a7f3d0)';
+                statusBadge.style.color = '#065f46';
+            } else {
+                statusBadge.innerHTML = '🔐 Senha Padrão';
+                statusBadge.style.background = 'linear-gradient(135deg, #fef3c7, #fde68a)';
+                statusBadge.style.color = '#92400e';
+            }
+        }
+
+        function togglePasswordField(fieldId, iconId) {
+            const passwordInput = document.getElementById(fieldId);
+            const passwordIcon = document.getElementById(iconId);
+            
+            if (!passwordInput || !passwordIcon) return;
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordIcon.className = 'fas fa-eye-slash';
+            } else {
+                passwordInput.type = 'password';
+                passwordIcon.className = 'fas fa-eye';
+            }
+        }
+
+        function checkPasswordStrength(password) {
+            const strengthElement = document.getElementById('passwordStrength');
+            if (!strengthElement) return;
+            
+            if (password.length === 0) {
+                strengthElement.textContent = '';
+                strengthElement.className = 'password-strength';
+                return;
+            }
+            
+            let strength = 0;
+            const checks = [
+                password.length >= 6,
+                /[a-z]/.test(password),
+                /[A-Z]/.test(password),
+                /\d/.test(password),
+                /[!@#$%^&*(),.?":{}|<>]/.test(password),
+                password.length >= 10
+            ];
+            
+            strength = checks.filter(Boolean).length;
+            
+            if (strength <= 2) {
+                strengthElement.textContent = '⚠️ Senha fraca';
+                strengthElement.className = 'password-strength weak';
+            } else if (strength <= 4) {
+                strengthElement.textContent = '🔶 Senha média';
+                strengthElement.className = 'password-strength medium';
+            } else {
+                strengthElement.textContent = '✅ Senha forte';
+                strengthElement.className = 'password-strength strong';
+            }
+        }
+
+        function checkPasswordMatch() {
+            const newPassword = document.getElementById('newPassword');
+            const confirmPassword = document.getElementById('confirmPassword');
+            const matchElement = document.getElementById('passwordMatch');
+            
+            if (!newPassword || !confirmPassword || !matchElement) return;
+            
+            if (confirmPassword.value.length === 0) {
+                matchElement.textContent = '';
+                matchElement.className = 'password-strength';
+                return;
+            }
+            
+            if (newPassword.value === confirmPassword.value) {
+                matchElement.textContent = '✅ Senhas coincidem';
+                matchElement.className = 'password-strength strong';
+            } else {
+                matchElement.textContent = '❌ Senhas não coincidem';
+                matchElement.className = 'password-strength weak';
+            }
+        }
+
+        function handlePasswordChange(event) {
+            event.preventDefault();
+            
+            const currentPasswordInput = document.getElementById('currentPassword');
+            const newPasswordInput = document.getElementById('newPassword');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const changePasswordBtn = document.getElementById('changePasswordBtn');
+            const successMessage = document.getElementById('passwordChangeSuccess');
+            
+            if (!currentPasswordInput || !newPasswordInput || !confirmPasswordInput || !changePasswordBtn) {
+                showMessage('Erro: Elementos do formulário não encontrados.', 'error');
+                return;
+            }
+            
+            const currentPassword = currentPasswordInput.value;
+            const newPassword = newPasswordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+            
+            // Validate current password
+            if (currentPassword !== getCurrentPassword()) {
+                showMessage('❌ Senha atual incorreta.', 'error');
+                currentPasswordInput.focus();
+                return;
+            }
+            
+            // Validate new password
+            if (newPassword.length < 6) {
+                showMessage('❌ A nova senha deve ter pelo menos 6 caracteres.', 'error');
+                newPasswordInput.focus();
+                return;
+            }
+            
+            // Check if passwords match
+            if (newPassword !== confirmPassword) {
+                showMessage('❌ As senhas não coincidem.', 'error');
+                confirmPasswordInput.focus();
+                return;
+            }
+            
+            // Check if new password is too weak
+            const weakPasswords = ['123456', 'password', 'admin', 'mariana', 'pratas', '111111', 'abc123'];
+            if (weakPasswords.includes(newPassword.toLowerCase())) {
+                showMessage('❌ Esta senha é muito comum. Escolha uma senha mais segura.', 'error');
+                newPasswordInput.focus();
+                return;
+            }
+            if (newPassword === currentPassword) {
+                showMessage('❌ A nova senha deve ser diferente da senha atual.', 'error');
+                newPasswordInput.focus();
+                return;
+            }
+            
+            // Disable button and show loading
+            changePasswordBtn.disabled = true;
+            changePasswordBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Alterando...</span>';
+            
+            // Simulate processing time
+            setTimeout(() => {
+                try {
+                    // Save new password
+                    setNewPassword(newPassword);
+                    
+                    // Clear form
+                    currentPasswordInput.value = '';
+                    newPasswordInput.value = '';
+                    confirmPasswordInput.value = '';
+                    
+                    // Clear strength indicators
+                    const strengthElement = document.getElementById('passwordStrength');
+                    const matchElement = document.getElementById('passwordMatch');
+                    if (strengthElement) {
+                        strengthElement.textContent = '';
+                        strengthElement.className = 'password-strength';
+                    }
+                    if (matchElement) {
+                        matchElement.textContent = '';
+                        matchElement.className = 'password-strength';
+                    }
+                    
+                    // Show success message
+                    if (successMessage) {
+                        successMessage.classList.remove('hidden');
+                        setTimeout(() => {
+                            successMessage.classList.add('hidden');
+                        }, 5000);
+                    }
+                    
+                    showMessage('✅ Senha alterada com sucesso! Use a nova senha no próximo login.', 'success');
+                    
+                } catch (error) {
+                    console.error('Error changing password:', error);
+                    showMessage('❌ Erro ao alterar senha. Tente novamente.', 'error');
+                } finally {
+                    // Re-enable button
+                    changePasswordBtn.disabled = false;
+                    changePasswordBtn.innerHTML = '<i class="fas fa-key"></i> <span>Alterar Senha</span>';
+                }
+            }, 1000);
+        }
+
+        // Enhanced loading for smooth transitions
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '1';
+            document.body.style.transition = 'opacity 0.3s ease';
+        });
+
+        // Initialize empty products on start if Firebase fails
+        if (!window.products) {
+            window.products = [];
+        }
+    </script>
+</body>
+</html>
